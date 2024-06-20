@@ -1,5 +1,6 @@
 import pandas as pd
-from flask import Flask, request, jsonify, send_from_directory
+from flask import Flask, request, jsonify
+from flask_cors import CORS
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error, r2_score
@@ -27,7 +28,8 @@ print(f'Mean Squared Error (MSE): {mse_rf}')
 print(f'R-squared (R²): {r2_rf}')
 
 # Initialize Flask app
-app = Flask(__name__, static_url_path='')
+app = Flask(__name__)
+CORS(app)  # Allow CORS for all domains
 
 # Define a route for prediction
 @app.route('/predict', methods=['POST'])
@@ -46,11 +48,6 @@ def predict_overlap():
         return jsonify({'Predicted Overlap': overlap_prediction})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-
-# Serve the static HTML file
-@app.route('/')
-def home():
-    return send_from_directory('Front_end', 'index.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
