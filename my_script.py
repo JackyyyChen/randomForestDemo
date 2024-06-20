@@ -4,7 +4,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error, r2_score
 
 # Load the data
-file_path = 'multiple_regression_model_sampling_resullt.csv'
+file_path = 'Overlap-NSW-Jan.csv'
 data = pd.read_csv(file_path)
 
 # Prepare the data
