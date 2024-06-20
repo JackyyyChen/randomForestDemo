@@ -15,7 +15,7 @@ export default function Home() {
     setLoading(true);
     setError(null);
     try {
-      const response = await axios.post('http://localhost:5000/predict', {
+      const response = await axios.post('https://your-backend-api-url/predict', {
         Linear: parseFloat(linear),
         Digital: parseFloat(digital),
       });
